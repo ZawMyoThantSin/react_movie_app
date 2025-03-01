@@ -1,4 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
+import PropTypes from 'prop-types';
 
 const MovieContext = createContext();
 
@@ -7,15 +8,29 @@ export const useMovieContext = () => useContext(MovieContext);
 export const MovieProvider = ({children}) => {
     const [favorites, setFavorites] = useState([]);
 
-    useEffect(()=> {
-        const storedFavorites = localStorage.getItem("favorites");
-
-        if(storedFavorites) setFavorites(JSON.parse(storedFavorites));
+    useEffect(() => {
+        try {
+            const storedFavorites = localStorage.getItem("favorites");
+            console.log("Loading favorites from storage:", storedFavorites);
+            
+            if (storedFavorites) {
+                const parsedFavorites = JSON.parse(storedFavorites);
+                setFavorites(parsedFavorites);
+                console.log("Parsed favorites:", parsedFavorites);
+            }
+        } catch (error) {
+            console.error("Error loading favorites from localStorage:", error);
+        }
     }, []);
 
-    useEffect(()=> {
-        localStorage.setItem("favorites", JSON.stringify(favorites))
-    },[favorites]);
+    useEffect(() => {
+        try {
+            console.log("Saving favorites to storage:", favorites);
+            localStorage.setItem("favorites", JSON.stringify(favorites));
+        } catch (error) {
+            console.error("Error saving favorites to localStorage:", error);
+        }
+    }, [favorites]);
 
     const addToFavorites = (movie) => {
         setFavorites(prev => [...prev, movie]);
@@ -40,3 +55,7 @@ export const MovieProvider = ({children}) => {
         {children}
     </MovieContext.Provider>
 }
+
+MovieProvider.propTypes = {
+    children: PropTypes.node.isRequired,
+};

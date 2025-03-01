@@ -1,51 +1,90 @@
+/* Wrapper for the entire favorites section */
 .favorites {
-    padding: 2rem;
-    width: 100%;
-    box-sizing: border-box;
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Title for the favorites section */
+.favorites h2 {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Empty state styling */
+.favorites-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+.favorites-empty h2 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color: #e50914;
+}
+
+.favorites-empty p {
+  color: #999;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* Movies Wrapper */
+.favorites .movies-wrapper {
+  padding: 2rem 0;
+}
+
+/* Grid layout for multiple movies */
+.favorites .movies-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Show 3 cards per row */
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .favorites .movies-grid {
+    grid-template-columns: repeat(2, 1fr); /* Show 2 cards per row on medium screens */
   }
-  
-  .favorites h2 {
-    margin-bottom: 2rem;
-    text-align: center;
-    font-size: 2.5rem;
-    color: #ffffff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 480px) {
+  .favorites .movies-grid {
+    grid-template-columns: 1fr; /* Show 1 card per row on small screens */
   }
-  
-  .favorites-empty {
-    text-align: center;
-    padding: 4rem 2rem;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    margin: 2rem auto;
-    max-width: 600px;
+}
+
+/* Flex layout for single movie */
+.favorites .single-card {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Animation for new favorites */
+.favorites .movies-wrapper > *,
+.favorites .movies-grid > * {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Animation for new favorites being added */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .favorites-empty h2 {
-    margin-bottom: 1rem;
-    font-size: 2rem;
-    color: #e50914;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .favorites-empty p {
-    color: #999;
-    font-size: 1.2rem;
-    line-height: 1.6;
-  }
-  
-  
-  /* Animation for new favorites being added */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  .movies-grid > * {
-    animation: fadeIn 0.3s ease-out forwards;
-  }
+}
