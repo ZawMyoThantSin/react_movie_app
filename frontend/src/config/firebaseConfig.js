@@ -2,13 +2,12 @@
 import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCgPcWzvOER7dn3bML5RKsFG9WGRw-VOtY",
-    authDomain: "real-time-chat-app-3e95a.firebaseapp.com",
-    projectId: "real-time-chat-app-3e95a",
-    storageBucket: "real-time-chat-app-3e95a.firebasestorage.app",
-    messagingSenderId: "402918287989",
-    appId: "1:402918287989:web:f3d37533130e44e385263c",
-    measurementId: "G-PLBWHP7F17"
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
 };
 
 export const app = initializeApp(firebaseConfig);
